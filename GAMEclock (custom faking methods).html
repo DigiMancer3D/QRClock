@@ -1,0 +1,1858 @@
+<html>
+<body id="html" style="width:100vw;transition: 0.8s ease;transition: background 6.93s ease;" ailgn="center">
+ <p align="center" id="body" >
+<div align="center" id="clock">
+ <div align="center" id="face">  
+  </br>
+ <div id="tables" align="center" width="99vw" style="overflow:auto;background-color:white">
+  <h1 align="center" id="textcap" style="margin-bottom:-1vw;margin-top:1.5%;align:center;margin-left:-20vw;margin-right:-10vw;">&nbsp;&nbsp;&nbsp;<b id="toptext">&nbsp;&nbsp;&nbsp;&nbsp;Game&nbsp;Clock&nbsp;&nbsp;&nbsp;&nbsp;</b></h1>
+   
+  </br>
+ <div align="center" style="align:center;margin-left:-45%;marign-right:-45%;margin-bottom:-17vw;">
+ <div id="myProgress" style="margin-bottom:-3vw;margin-top:1.5vw;">
+  <div id="myBar"></div><span id="labels" style="display:none;"></br></br></br><span>Progress into the day</span></div>
+
+<div id="myProgress2" style="margin-bottom:-3vw;margin-top:1.5vw;">  
+ <div id="myBar2"></div><span id="labels1" style="display:none;"></br></br></br><span>Progress into the hour</span></div>
+
+  <div id="myProgress3" style="margin-bottom:-3vw;margin-top:1.5vw;">
+   <div id="myBar3" ></div><span id="labels22" style="display:none;"></br></br></br><span>Progress into the minute</span></div>
+  
+</div>
+ </br>
+  
+  <div align="left" id="datetime"><p align="left" id="leftbar" style="margin-left:1.5vw;margin-top:13vw;margin-bottom:-17vw;">
+   <span id="yr" ></span><span id="labels3" style="display:none;"></br>The year</span></br>
+<span id="mt" ></span><span id="labels4" style="display:none;"></br>The Month</span></br>
+<span id="dy" ></span><span id="labels5" style="display:none;"></br>The Day</span>
+</br></br>  
+ </div>
+     <div id="times" style="margin-left:-33vw;margin-right:-29vw;margin-bottom:-33.1vw;">
+      <span id="timepuller">
+   <span  id="hour" style="margin-left:-5.5vw;">&nbsp;</span>&nbsp;<span  id="min"></span>&nbsp;<span id="sec" style="margin-right:-2.5vw;"></span><span id="labels6" style="display:none;"><span style="margin-left:-5.5vw;">The Hour&nbsp;</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span></span>The Minutes&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="margin-right:-2.5vw;">The Seconds</span></span>
+      
+      </span>
+      </br></br></br><div id="words1" width="50vw;" style="display:50vw;margin-top:-2vw;"></div><span id="labels7" style="display:none;">The Time in Base64 & colors by Epoch time</span></br>
+
+
+    </div>  
+
+
+</br></br>
+
+    </div>
+
+   </p>
+
+
+
+</div>
+ <div align="center" id="epoch">
+
+  
+  
+ </div>
+</div>
+
+
+  <span style="display:none;" id="epochstore"></span>
+
+ <span style="display:none;" id="maths2"></span>
+
+  <span style="display:none;" id="locallon"></span>
+  <span style="display:none;" id="locallat"></span>
+  <span style="display:none;" id="tzone"></span>
+  <span style="display:none;" id="maths"></span>
+  <span style="display:none;" id="jancheck"></span>
+  <span style="display:none;" id="jeancheck"></span>
+   
+   
+</body>
+
+<script>
+
+ //get timezone
+var date = [];
+
+var fauxe1 = "1";
+var fauxe2 = Math.floor(Math.random()*7) + 1;
+var fauxe3 = Math.floor(Math.random()*10) + 1;
+var fauxe4 = Math.floor(Math.random()*10) + 1;
+var fauxe5 = Math.floor(Math.random()*10) + 1;
+var fauxe6 = Math.floor(Math.random()*10) + 1;
+var fauxe7 = Math.floor(Math.random()*10) + 1;
+var fauxe8 = Math.floor(Math.random()*10) + 1;
+var fauxe9 = Math.floor(Math.random()*10) + 1;
+var fauxe0 = Math.floor(Math.random()*10) + 1;
+
+if(fauxe0 >= 10){
+ fauxe0 = 0;
+ fauxe9 = fauxe9 + 1;
+}
+
+if(fauxe9 >= 10){
+ fauxe9 = 0;
+ fauxe8 = fauxe8 + 1;
+}
+
+if(fauxe8 >= 10){
+ fauxe8 = 0;
+ fauxe7 = fauxe7 + 1;
+}
+
+if(fauxe7 >= 10){
+ fauxe7 = 0;
+ fauxe6 = fauxe6 + 1;
+}
+
+if(fauxe6 >= 10){
+ fauxe6 = 0;
+ fauxe5 = fauxe5 + 1;
+}
+
+if(fauxe5 >= 10){
+ fauxe5 = 0;
+ fauxe4 = fauxe4 + 1;
+}
+
+if(fauxe4 >= 10){
+ fauxe4 = 0;
+ fauxe3 = fauxe3 + 1;
+}
+
+if(fauxe3 >= 10){
+ fauxe3 = 0;
+ fauxe2 = fauxe2 + 1;
+}
+
+if(fauxe2 >= 10){
+ fauxe2 = 0;
+ fauxe1 = fauxe1 + 1;
+}
+
+
+//const ee = new Date(); 
+ const ee = fauxe1 + "" + fauxe2 + "" + fauxe3 + "" + fauxe4 + "" + fauxe5 + "" + fauxe6 + "" + fauxe7 + "" + fauxe8 + "" + fauxe9 + "" + fauxe0;
+ date += ee;
+ 
+//var hyploc = date.search("GMT");
+
+//document.getElementById('locallat').innerHTML = date.slice(hyploc+3,hyploc+4);
+
+//document.getElementById('locallon').innerHTML = date.slice(hyploc+4,hyploc+8).replace("0", "").replace("0", "").replace("0", "").replace("0", "");
+
+setInterval(function dates(){
+ 
+ //pull time
+//var d = new Date(); 
+
+  //var daters2 = d.getDate(); 
+  
+ 
+ 
+ var notmonth;
+ 
+ 
+ //var latitude  = document.getElementById('locallat').innerHTML;   <!-- 0 - 90 N|S -->
+ var lat1 = Math.floor(Math.random()*181);
+ var lat2 = "N";
+  
+  if(lat1 > 90) {
+    lat1 = Number(lat1) - 90;
+    lat2 = "S";
+	
+	if(lat1 < 0){
+	 lat1 = lat1.split('-')[1];
+	}
+  }
+  else {
+   lat2 = "N";  <!-- multiple loop catch -->
+  }
+  
+ var latitude = lat1 + "°" + Math.floor(Math.random()*61) + "'" + lat2;
+ //var longitude = document.getElementById('locallon').innerHTML;   <!-- 0 - 180 E|W -->
+ var lon1 = Math.floor(Math.random()*361);
+ var lon2 = "W";
+ 
+  if(lon1 > 180) {
+   lon1 = Number(lon1) - 180);
+   lon2 = "E";
+   
+   if(lon1 < 0){
+    lon1 = lon1.split('-')[1];
+   }
+   else {
+    lon2 = "W";  <!-- multiple loop catch -->
+   }	
+   
+  var longitude = lon1 + "°" + Math.floor(Math.random()*61) + "'" + lon2;
+ 
+ 
+// fauxe1 + "" + fauxe2 + "" + fauxe3 + "" + fauxe4 + "" + fauxe5 + "" + fauxe6 + "" + fauxe7 + "" + fauxe8 + "" + fauxe9 + "" + fauxe0;
+
+ //pull time pieces
+//var stamps = d.getTime(); 
+var stamps = fauxe1 + "" + fauxe2 + "" + fauxe3 + "" + fauxe4 + "" + fauxe5 + "" + fauxe6 + "" + fauxe7 + "" + fauxe8 + "" + fauxe9 + "" + fauxe0; 
+
+var getdays = Math.abs(Number(stamps)/86400);
+var getyrs = Math.abs(Number(getdays)/365.25);
+
+var leapyr = 0, nwyr = 0, yrmod = 0, yrper = 0, findday = 0, yrtot = 365, month = 0, isday = 0, ishr = 0, ismin = 0, nwhr = 0, nwmn = 0;
+
+var ismonth = '';
+
+var yrnow = Number(1970)+Number(getyrs); //get's current year
+
+if(yrnow.search('.') >= 0){
+ yrnow = yrnow.split('.')[0];
+}
+
+
+var getlpy = Math.abs(Number(yrnow)/4);
+
+
+ if(getlpy.search('.') >= 0){
+   leapyr = 0; <!-- not leap year -->
+ }
+ else if(getlpy.search('.') < 0){
+   leapyr = 1; <!-- leap year -->
+ }
+ else {
+   leapyr = 0; 
+ }
+
+ 
+ if(getyrs.search('.') >= 0) {
+   nwyr = getyrs.split('.')[1]; <!-- pulls remainder only -->
+   nwhr = getyrs.split('.')[1];
+    
+	 if(nwyr.search(/^{00}/) >= 0){  <!-- two zeros at start -->
+	   yrmod = 2;
+	 }
+	 else if(nwyr.search(/^0/) >= 0){  <!-- one zero at start -->
+	   yrmod = 1;
+	 }
+	 else {
+	  yrmod = 0;  <!-- multiloop catch -->
+	 }
+   
+   nwyr = Math.Round(Math.abs(Math.round(nwyr).toFixed(2)) * 100).toFixed(2); <!-- make percentage [round up] -->   
+   yrper = Number(nwyr) + Number(yrmod); <!-- should be the correct percentage in the year -->
+   
+   nwhr = Math.abs(Numer(nwhr) * 100);
+ }
+ else {
+  yrper = "0.00"; <!-- this means the day is at MIDNIGHT JAN 1 -->
+ }
+ 
+ 
+  if(leapyr === 1){
+    yrtot = 366;  <!-- is a leap year -->
+  }
+  else {
+    yrtot = 365;  <!-- multi loop catch -->
+  }
+ 
+   findday = yrper * yrtot; <!-- the day of the year -->
+   
+   if(findday <= 31){
+    ismonth = "JAN";
+	month = 0;
+	
+	if(findday.search('-') < 0){
+	 findday = findday.split('-')[1];
+	  if(findday > 31){
+	   findday = findday - 31;
+	    if(findday.search('-') < 0){
+	     findday = findday.split('-')[1];
+	    }
+	  }
+	}
+   }
+   
+	isday = findday;
+	
+   else if(findday > 31 && findday <= 60){
+    if(leapyr === 0){
+	 if(findday === 60) { <!-- not leap yr so this is march 1 -->
+	  ismonth = "MAR";
+	  month = 2;
+	  isday = 1;
+	 }
+	 else {
+	  ismonth = "FEB";
+	  month = 1;
+	  isday = Math.abs(Number(findday) - 31);
+	 }
+	}
+	else { <!-- is leap yr so all feb -->
+	  ismonth = "FEB";
+	  month = 1;
+	  isday = Math.abs(Number(findday) - 31);
+	}
+   }
+   else if(findday > 60 && findday <= 91){
+    ismonth = "MAR";
+	  month = 2;
+	isday = Math.abs(Number(findday) - 60);
+   }
+   else if(findday > 91 && findday <= 121){
+    ismonth = "APRIL";
+	  month = 3;
+	isday = Math.abs(Number(findday) - 91);
+   }
+   else if(findday > 121 && findday <= 152){
+    ismonth = "MAY";
+	  month = 4;
+	isday = Math.abs(Number(findday) - 121);
+   }
+   else if(findday > 152 && findday <= 182){
+    ismonth = "JUNE";
+	  month = 5;
+	isday = Math.abs(Number(findday) - 152);
+   }
+   else if(findday > 182 && findday <= 213){
+    ismonth = "JULY";
+	  month = 6;
+	isday = Math.abs(Number(findday) - 182);
+   }
+   else if(findday > 213 && findday <= 244){
+    ismonth = "AUG";
+	  month = 7;
+	isday = Math.abs(Number(findday) - 213);
+   }
+   else if(findday > 244 && findday <= 274){
+    ismonth = "SEP";
+	  month = 8;
+	isday = Math.abs(Number(findday) - 244);
+   }
+   else if(findday > 274 && findday <= 305){
+    ismonth = "OCT";
+	  month = 9;
+	isday = Math.abs(Number(findday) - 274);
+   }
+   else if(findday > 305 && findday <= 335){
+    ismonth = "NOV";
+	  month = 10;
+	isday = Math.abs(Number(findday) - 305);
+   }
+   else if(findday > 335 && findday <= 366){
+    ismonth = "DEC";
+	  month = 11;
+	isday = Math.abs(Number(findday) - 335);
+   }
+   else {
+    ismonth = "JAN";
+    month = 0;
+	isday = 1;
+   }
+	 
+	 
+ 
+
+var uday = isday; //used for maths
+
+ if(yrper = "0.00"){
+  uday = 0;
+ }
+
+var daters1 = month+1;
+var umonth = month+1; //used for maths
+
+
+var hours = d.getHours(); //used for QR output
+var hours3 = d.getHours();  //used for hour data manipulation
+var hours4 = d.getHours();  //used for sun/moon manipulation
+var mins = d.getMinutes(); 
+var minute = d.getMinutes(); //used for sunrise/sunset
+var secs = d.getSeconds();
+ var milli = d.getMilliseconds();
+ var daters3 = d.getFullYear(); 
+ var daters4 = d.getYear();
+ 
+ //manipulate hours for reverse of hour & misc
+ var note = (100-(100-hours3));
+ var oten = ((100-hours3)-note);
+ var rouh = (24-hours3);
+  var hh = (24-hours3);
+ var hm = (24-hours3);
+ var hour25 = ' ';
+ 
+ //manipulate for reverse & ratio h:m
+  var mm = (61-mins)/4;
+  var mm3 = (61-mins)/6;
+  var hh22 = Number((hours3%(mins*2))+6);
+ var mh = (61-mm);
+ var hhh = (100-hh);
+ var mmm = (100-mm);
+ 
+ var minn = (d.getMinutes()+30);
+ var bord = (d.getHours()+10);
+ 
+ //progress bar math
+ const h2 = (d.getHours()*4.16667);
+ var hour2 = h2+1;
+ const m2 = (d.getMinutes()*1.66667);
+ var min2 = m2+1;
+ const s2 = (d.getSeconds()*1.66667);
+ var sec2 = s2+1;
+ 
+ 
+ //new variables
+ var newmm = hours3/4;
+ 
+ //find oppisite day
+ var oppisiteDate = 100-daters2;
+ 
+ 
+ var notyear = (daters3-daters4);
+ 
+  
+ 
+ 
+ 
+ //timezone
+ var tz = '';
+ if(latitude !== "-" && latitude !== "+"){
+  tz = ((longitude));
+ }
+ else {
+  tz = (latitude+(longitude));
+ 
+  
+ }//search "o-t" to find this
+ 
+ 
+//adjust months for output
+var months = ["SPACE", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]; 
+
+ 
+ //launch local storage for epoch breakdowns
+ document.getElementById('epochstore').innerHTML = stamps;
+ 
+ //catch local storage for epoch breakdowns
+ var epochy = document.getElementById('epochstore').innerHTML;
+ 
+ 
+ //epochlen is epoch length
+   var epochlen = epochy.length;
+   
+ //splice epoch into 3 lenght strings
+   var epoch0 = ' ';
+ epoch0 = epochy.slice(0,epochlen-9);
+   var epoch1 = ' ';
+ epoch1 = epochy.slice(epochlen-9,epochlen-6);
+   var epoch2 = ' ';
+ epoch2 = epochy.slice(epochlen-6,epochlen-3);
+ 
+ //redefine epoch for double use and extended breakpoints
+ var epoch3 = ' ';
+ var epoch4 = ' ', epoch5 = ' ', epoch6 = ' ', epoch7 = ' ', epoch8 = ' ', epoch9 = ' ', epoch10 = ' ';
+ 
+ //more epoch breakdowns, sets of 3 digits
+ epoch4 = epochy.slice(epochlen-6,epochlen-3);
+ epoch5 = epochy.slice(epochlen-8,epochlen-5);
+ epoch6 = epochy.slice(epochlen-10,epochlen-7);
+ epoch7 = epochy.slice(epochlen-11,epochlen-9);
+ epoch8 = epochy.slice(epochlen-13,epochlen-11);
+ epoch9 = epochy.slice(epochlen-15,epochlen-13);
+ epoch10 = epochy.slice(epochlen-3,epochlen);
+ 
+ //more epoch redefines, sets of 1 digits
+ var epochA1 = epochy.slice(epochlen-1, epochlen); //offset fast 1
+ var epochA2 = epochy.slice(epochlen-2, epochlen-1); //offset slow 1
+ var epochA3 = epochy.slice(epochlen-3, epochlen-2); //offset slower 1
+ var epochA4 = epochy.slice(epochlen-4, epochlen-3); //fast 1
+ var epochA5 = epochy.slice(epochlen-5, epochlen-4); //med 2
+ var epochA6 = epochy.slice(epochlen-6, epochlen-5); //slow 2
+ var epochA7 = epochy.slice(epochlen-7, epochlen-6); //vert slow 1
+ 
+ //this finds the estimated sunrise point 
+ document.getElementById('maths').innerHTML = (tz-((umonth/(tz/uday))+(uday*1.66)));
+ 
+ if(document.getElementById('maths').innerHTML.search("-") !== "-1"){
+ document.getElementById('maths').innerHTML = -(tz-((umonth/(tz/uday))+(uday*1.66)))
+  
+ }
+ //everything after the decimal is the min
+ document.getElementById('maths2').innerHTML = ((tz-((umonth/(tz/uday))+(uday*1.66)))-2)
+ 
+ if(document.getElementById('maths2').innerHTML.search("-") !== "-1"){
+ document.getElementById('maths2').innerHTML = -((tz-((umonth/(tz/uday))+(uday*1.66)))-2)
+  
+ }
+ 
+ var tmaths = document.getElementById('maths2').innerHTML; //tz-(umonth/(tz/2))+(uday*1.63)-2;
+ 
+var tmaths2 = tmaths.search(".");
+var tmaths3 = tmaths.search(",");
+ var testmaths = parseFloat((tmaths + '').split('.')[1]);
+ 
+ if(tmaths2 !== "-1"){
+ //var testmaths = tmaths.split(".");
+ testmaths = parseFloat((tmaths + '').split('.')[1]);
+ }
+ if(tmaths2 === 0){
+ //var testmaths = tmaths.split(".");
+testmaths = 00;
+ }
+ if(tmaths3 !== "-1"){
+testmaths = parseFloat((tmaths + '').split(',')[1]);
+ }
+ if(tmaths3 === 0){
+ //var testmaths = tmaths.split(".");
+testmaths = 00;
+ }
+ else {
+ testmaths = parseFloat((tmaths + ''));
+ }
+ 
+  var minbase = parseFloat(((testmaths*0.6) + '').split('.')[0]); //algorithimic finding of the mins for sunrise
+ 
+ if(minbase+uday > 59){
+  minbase = 59-(minbase+uday);
+  longitude = longitude+1;
+ }
+ 
+ 
+ 
+ 
+ var jean = minbase+uday;   //the sunrise refrence point in mins
+ //original:: jean = 40+uday;
+  var jeans = longitude; //the sunsrise refrence point in hours
+ //original:: jeans = 5;
+ 
+ if(jean > 59){
+jean = Number(jean)-59; 
+ jeans = longitude+1;  
+ }
+ if(jean < 60) {
+   jeans = longitude;
+}
+ 
+  
+ var jans = Number(jeans)+13; //the sunsset refrence point in hours
+
+ 
+ var jan = (Number(jean+uday)+26); //the sunset refrence point in mins
+ 
+ if(jan > 59){
+  jan = (Number(jan)-59);
+  jans = jans + 1;
+ }
+ 
+
+ if(jan > 60){
+ jans = (Number(jeans)+14); 
+ }
+ if(jan < 61) {
+ jans = (Number(jeans)+15);  
+ }
+ 
+ //manipulate data for possible outputs
+var manage = btoa(hours+':'+mins+'::'+secs);
+var manage2 = btoa(stamps);
+ var manage1 = btoa(daters3+'|'+daters1+'|'+daters2);
+ 
+ //year data manipulation for quantum arrorw bubbles
+ var yearums1 = d.getFullYear().toString(16);
+ var yearums2 = d.getMinutes().toString(16);
+ var yearums3 = d.getSeconds().toString(16);
+ var yearums = yearums1+yearums2+yearums3;
+ var yearums4 = yearums2+yearums3+yearums1;
+ var yearums5 = yearums3+yearums2+yearums1;
+ var yearums6 = yearums1+yearums3+yearums2;
+ var yearums7 = yearums2+yearums1+yearums3;
+ var yearums8 = yearums3+yearums1+yearums3;
+ var yearumlen1 = (yearums.slice(yearums.length-6,yearums.length)).length;
+ var yearumlen2 = (yearums4.slice(yearums4.length-6,yearums4.length)).length;
+ 
+ //quantum entangling the year outputs to the each other and the month
+ var year1 = d.getYear();
+ var year2 = d.getFullYear();
+ var yearper = ((d.getTime()*d.getMonth())/year2);
+ var yearper2 = (d.getMonth()*year2)/year1;
+ 
+ //prep for gradient coloring, degree changing and year entanglement output
+ var grad1 = ' ', grad2 = ' ', deg12 = ' ', deg22 = ' ', yearpos1 = ' ', yearpos2 = ' ', yearposA = 45, yearposB = 0;
+ 
+var upos = ( ( (stamps/ ( (daters3/daters4) * (secs * ( (umonth/uday)*100 ) / (mins/hours3) ) ) + (epochA1+epochA4) ) / stamps ) / ( (360 ^ 3.14) / 369 ) - 1.33) * ( Math.random(daters4, epochA4) - Math.random(daters3, epochA1) );
+ 
+ var data1out = '', ampmq = '', liveman = '', shadowmath = '', monthtemp = '', monthdays = '';
+ 
+ 
+ //time progress bars
+ document.getElementById('myProgress').style="width:13vw;margin-bottom:-3.55vw;margin-left:1.75vw;margin-right:1.25vw;background-color:transparent;text-align:center";
+  document.getElementById('myBar').style="align:center;width:"+hour2+"%;height:30px;background-image:linear-gradient(to right, rgb("+epoch4+","+epoch5+","+epoch6+", "+hour2+"%)  "+hour2%6+"%, rgb("+epoch5+","+epoch6+","+epoch4+", "+hour2+"%));margin-bottom:-3vw;margin-top:1.5vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0."+secs+") inset;";
+ 
+ document.getElementById('myProgress2').style="width:13vw;margin-bottom:-3.55vw;margin-left:16.25vw;margin-right:-16.25vw;background-color:transparent;text-align:center";
+ 
+  document.getElementById('myBar2').style="align:center;width:"+min2+"%;height:30px;background-image:linear-gradient(to right, rgb("+epoch5+","+epoch6+","+epoch4+", "+min2+"%) "+min2%4+"%, rgb("+epoch6+","+epoch4+","+epoch5+", "+min2+"%) );margin-bottom:-3vw;margin-top:1.5vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0."+secs+") inset;";
+ 
+document.getElementById('myProgress3').style="width:13vw;margin-bottom:-3.55vw;margin-left:31.5vw;margin-right:-31.5vw;background-color:transparent;text-align:center";
+
+ 
+  document.getElementById('myBar3').style="align:center;width:"+sec2+"%;height:30px;background-image:linear-gradient(to right, rgb("+epoch6+","+epoch4+","+epoch5+", "+sec2+"%) "+sec2%2+"%, rgb("+epoch4+","+epoch5+","+epoch6+", "+sec2+"%) );margin-bottom:-3vw;margin-top:1.5vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0."+secs+") inset;";
+  
+ //time progress perecentage output
+ document.getElementById('myBar').innerHTML= "<b align='center' style='text-shadow:0px -2px 14px white;'>" + Math.round(hour2) + "% </b>";
+ 
+ document.getElementById('myBar2').innerHTML= "<b align='center' style='text-shadow:0px -2px 14px white;'>"+Math.round(min2)+"%</b>";
+ 
+ document.getElementById('myBar3').innerHTML= "<b align='center' style='text-shadow:0px -2px 14px white;'>"+Math.round(sec2)+"%</b>";
+ 
+ 
+ //artifical sky coloring
+ var bggtop = "2,25,60", bggmid1 = "23,48,92", bggmid2 = "17,17,17", bggbot = "0,0,0";
+   
+ 
+ //find am/pm
+ if(hours3 >= 0 && hours3 < 12) {
+  document.getElementById('clock').style='border:'+bord+'px solid rgb(153,215,228,'+minn+'%);margin:2%;';
+ ampmq = "After Merdian (<i>AM</i>)";
+ }
+ 
+ else if(hours3 >= 12) {
+  document.getElementById('clock').style='border:'+bord+'px solid rgb(42,42,53,'+minn+'%);margin:2%;';
+ ampmq = "Pre-Merdian (<i>PM</i>)";
+ }
+ 
+ 
+ var gene = 0;
+ 
+ //sunrise/sunset & sun actions
+ //am
+if(hours4 === 0){ 
+
+ bggtop = '0,0,0';
+ bggmid1 = '0,0,0';
+ bggmid2 = '0,0,0';
+ bggbot = '0,0,0';
+  
+  hour25 = 21;
+}
+ else if(hours4 === 1){
+
+ bggtop = '0,0,0';
+ bggmid1 = '0,0,0';
+ bggmid2 = '0,0,0';
+ bggbot = '17,17,17';
+ 
+  hour25 = 15;
+ }
+ else if(hours4 === 2){
+
+ bggtop = '0,0,0';
+ bggmid1 = '0,0,0';
+ bggmid2 = '17,17,17';
+ bggbot = '2,25,60';
+  
+  hour25 = 9;
+ }
+ else if(hours4 === 3){
+
+ bggtop = '0,0,0';
+ bggmid1 = '17,17,17';
+ bggmid2 = '2,25,60';
+ bggbot = '23,48,92';
+  
+  hour25 = 13;
+ }
+ else if(hours4 === 4){
+  
+ bggtop = '0,0,0';
+ bggmid1 = '17,17,17';
+ bggmid2 = '2,25,60';
+ bggbot = '23,48,92';
+  
+  hour25 = 21;
+ }
+ else if(hours4 === 5){
+ 
+  hour25 = 33;
+ 
+  if(gene === 0){
+  if(hours4 === jeans && minute >= jean) {
+ bggtop = '2,25,60';
+ bggmid1 = '23,48,92';
+ bggmid2 = '23,48,92';
+ bggbot = '162,147,152';
+   
+ gene = 1;
+  }
+else {
+ bggtop = '17,17,17';
+ bggmid1 = '2,25,60';
+ bggmid2 = '23,48,92';
+ bggbot = '23,48,92';
+ 
+ gene = 0;
+  }
+  }
+  else {
+bggtop = '23,48,92';
+ bggmid1 = '162,147,152';
+ bggmid2 = '86,181,214';
+ bggbot = '154,175,210';
+  }  
+ }
+ else if(hours4 === 6){
+ 
+  hour25 = 51;
+ 
+  if(gene === 0){
+ if(hours4 === jeans && minute >= jean) {
+ bggtop = '23,48,92';
+ bggmid1 = '162,147,152';
+ bggmid2 = '86,181,214';
+ bggbot = '154,175,210';
+  
+ gene = 1;
+}
+  else{
+ bggtop = '2,25,60';
+ bggmid1 = '23,48,92';
+ bggmid2 = '23,48,92';
+ bggbot = '162,147,152';
+   
+ gene = 0;
+ }
+  }
+  else {
+   bggtop = '162,147,152';
+ bggmid1 = '86,181,214';
+ bggmid2 = '154,175,210';
+ bggbot = '255,241,0';
+  }
+}
+ else if(hours4 === 7){
+
+  hour25 = 66;
+  
+  if(gene === 0){
+ if(hours4 === jeans && minute >= jean) {
+ bggtop = '162,147,152';
+ bggmid1 = '86,181,214';
+ bggmid2 = '154,175,210';
+ bggbot = '255,241,0';
+  
+ gene = 1;
+ }
+  else{
+ bggtop = '23,48,92';
+ bggmid1 = '162,147,152';
+ bggmid2 = '86,181,214';
+ bggbot = '154,175,210';
+   
+ gene = 0;
+ }
+  }
+  else {
+    
+ bggtop = '143,201,235';
+ bggmid1 = '154,175,210';
+ bggmid2 = '255,241,0';
+ bggbot = '255,170,0';
+  }
+}
+ else if(hours4 === 8){
+
+  hour25 = 80;
+  
+  if(gene === 0){
+if(hours4 === jeans && minute >= jean) {
+ 
+ bggtop = '143,201,235';
+ bggmid1 = '154,175,210';
+ bggmid2 = '255,241,0';
+ bggbot = '255,170,0';
+  
+ gene = 1;
+}
+  else{
+ bggtop = '162,147,152';
+ bggmid1 = '86,181,214';
+ bggmid2 = '154,175,210';
+ bggbot = '255,241,0';
+   
+ gene = 0;
+  }
+   }
+   else {
+    bggtop = '143,201,235';
+ bggmid1 = '154,175,210';
+ bggmid2 = '255,241,0';
+ bggbot = '255,170,0';
+   } 
+ }
+ else if(hours4 === 9){
+
+ bggtop = '143,201,235';
+ bggmid1 = '154,175,210';
+ bggmid2 = '255,241,0';
+ bggbot = '255,170,0';
+  
+  hour25 = 69;
+  
+  gene = 0;
+ }
+ else if(hours4 === 10){
+
+ bggtop = '143,201,235';
+ bggmid1 = '154,175,210';
+ bggmid2 = '255,241,0';
+ bggbot = '255,170,0';
+  
+  hour25 = 50;
+  gene = 0;
+ }
+ else if(hours4 === 11){
+
+ bggtop = '255,241,0';
+ bggmid1 = '255,170,0';
+ bggmid2 = '255,241,0';
+ bggbot = '154,175,210';
+  
+  hour25 = 33;
+  gene = 0;
+ }
+ 
+ 
+ 
+ //pm
+ else if(hours4 === 12){
+
+ 
+ bggtop = '255,170,0';
+ bggmid1 = '255,241,0';
+ bggmid2 = '154,175,210';
+ bggbot = '143,201,235';
+  
+  hour25 = 21;
+  gene = 0;
+ }
+ else if(hours4 === 13){
+
+ bggtop = '255,170,0';
+ bggmid1 = '255,241,0';
+ bggmid2 = '154,175,210';
+ bggbot = '143,201,235';
+  
+  hour25 = 15;
+  gene = 0;
+ }
+ else if(hours4 === 14){
+
+ bggtop = '255,170,0';
+ bggmid1 = '255,241,0';
+ bggmid2 = '154,175,210';
+ bggbot = '143,201,235';
+  
+  hour25 = 9;
+  gene = 0;
+ }
+ else if(hours4 === 15){ //3pm
+   
+ bggtop = '255,170,0';
+ bggmid1 = '255,241,0';
+ bggmid2 = '143,201,235';
+ bggbot = '143,201,235';
+  
+  hour25 = 24;
+  gene = 0;
+ }
+ else if(hours4 === 16){ //4pm
+   
+ bggtop = '255,170,0';
+ bggmid1 = '255,241,0';
+ bggmid2 = '143,201,235';
+ bggbot = '143,201,235';
+  
+  hour25 = 33;
+  gene = 0;
+ }
+ else if(hours4 === 17){ //5pm
+
+ bggtop = '255,241,0';
+ bggmid1 = '255,170,0';
+ bggmid2 = '255,241,0';
+ bggbot = '143,201,235';
+  
+  hour25 = 51;
+  gene = 0;
+ }
+ else if(hours4 === 18){ //6pm
+
+  hour25 = 69;
+ if(gene === 0){
+if(hours4 === jeans && minute >= jean) {
+ bggtop = '2,25,60';
+ bggmid1 = '23,48,92';
+ bggmid2 = '143,201,235';
+ bggbot = '255,241,0';
+ 
+ gene = 1;
+}
+  else{
+ bggtop = '143,201,235';
+ bggmid1 = '255,241,0';
+ bggmid2 = '255,170,0';
+ bggbot = '255,241,0';
+   
+ gene = 0;
+  }
+   }
+  else {
+    bggtop = '17,17,17';
+ bggmid1 = '2,25,60';
+ bggmid2 = '23,48,92';
+ bggbot = '143,201,235';
+  }
+ }
+ else if(hours4 === 19){ //7pm
+
+   hour25 = 80;
+ 
+  if(gene === 0){
+if(hours4 === jeans && minute >= jean) {
+
+ bggtop = '17,17,17';
+ bggmid1 = '2,25,60';
+ bggmid2 = '23,48,92';
+ bggbot = '143,201,235';
+ 
+ gene = 1;
+}
+  else{
+ bggtop = '2,25,60';
+ bggmid1 = '23,48,92';
+ bggmid2 = '143,201,235';
+ bggbot = '255,241,0';
+   
+ gene = 0;
+  }
+   }
+  else {
+bggtop = '0,0,0';
+ bggmid1 = '17,17,17';
+ bggmid2 = '2,25,60';
+ bggbot = '23,48,92';   
+  }
+ }
+ else if(hours4 === 20){ //8pm
+
+    hour25 = 70;
+
+  if(gene === 0){
+if(hours4 === jeans && minute >= jean) {
+
+ bggtop = '0,0,0';
+ bggmid1 = '17,17,17';
+ bggmid2 = '2,25,60';
+ bggbot = '23,48,92';
+ 
+ gene = 1;
+}
+  else{
+ bggtop = '17,17,17';
+ bggmid1 = '2,25,60';
+ bggmid2 = '23,48,92';
+ bggbot = '143,201,235';
+   
+   gene = 0;
+  }
+   }
+  else {
+   bggtop = '0,0,0';
+ bggmid1 = '17,17,17';
+ bggmid2 = '2,25,60';
+ bggbot = '23,48,92';
+  }
+ }
+ else if(hours4 === 21){
+
+ bggtop = '0,0,0';
+ bggmid1 = '17,17,17';
+ bggmid2 = '2,25,60';
+ bggbot = '23,48,92';
+  
+  hour25 = 57;
+   
+   gene = 0;
+ }
+ else if(hours4 === 22){
+
+ bggtop = '0,0,0';
+ bggmid1 = '17,17,17';
+ bggmid2 = '17,17,17';
+ bggbot = '2,25,60';
+  
+  hour25 = 33;
+   
+   gene = 0;
+ }
+ else if(hours4 === 23){
+
+ bggtop = '0,0,0';
+ bggmid1 = '0,0,0';
+ bggmid2 = '17,17,17';
+ bggbot = '17,17,17';
+  
+  hour25 = 25;
+   
+   gene = 0;
+ }
+ 
+ document.getElementById('tables').style='margin:2px;padding:3px;border:9px solid rgb(20,180,20);background-color:white;max-width:94%;box-shadow: 0px 0px '+mm+'px '+hh+'px rgb(17,17,34,0.'+secs+');';
+ 
+ document.getElementById('tzone').innerHTML = hours4;
+ 
+ if(latitude === "-"){
+ 
+document.getElementById('tzone').innerHTML = hours4-(tz); //if a negitive time zone
+ }
+ 
+ else {
+document.getElementById('tzone').innerHTML = hours4+(tz); //if a positive time zone
+ }
+ 
+ var offset = document.getElementById('tzone').innerHTML;
+ 
+ hours4 = offset;
+ 
+ 
+ //find quater hours & 1/8th hours
+ if (mins < 15) {
+  document.getElementById('tables').style='margin:2px;padding:3px;border:6px solid rgb(20,80,20);max-width:94%;box-shadow: 0px 0px '+mm+'px '+hh+'px rgb(17,17,17,0.'+secs+');background-color:white;';
+ 
+ hour25 = hour25 - 3;
+  
+if (mins < 7) {
+  document.getElementById('face').style='margin:2px;padding:3px;border:6px dashed rgb(80,180,80);'; 
+ hour25 = hour25 - 6;
+}
+  else if (mins > 6) {
+  document.getElementById('face').style='margin:2px;padding:3px;border:6px solid rgb(0,128,0);';
+
+ hour25 = hour25 + 7;
+  }
+ }
+ 
+ 
+ else if (mins > 15 || mins < 31) {
+  document.getElementById('tables').style='margin:2px;padding:3px;border:6px dashed rgb(20,80,20);max-width:94%;box-shadow: 0px 0px '+mm+'px '+hh+'px rgb(17,34,17,0.'+secs+');background-color:white;';
+  
+ hour25 = hour25 - 3;
+  
+if (mins < 22) {
+  document.getElementById('face').style='margin:2px;padding:3px;border:6px dashed rgb(40,180,40);';
+  
+ hour25 = hour25 - 6;
+}
+  else if (mins > 21) {
+  document.getElementById('face').style='margin:2px;padding:3px;border:6px solid rgb(0,128,0);';
+
+ hour25 = hour25 + 7;
+  }
+ }
+ 
+ 
+ else if (mins > 30 || mins < 46) {
+  document.getElementById('tables').style='margin:2px;padding:3px;border:6px dotted rgb(40,210,40);background-color:white;max-width:94%;box-shadow: 0px 0px '+mm+'px '+hh+'px rgb(34,17,17,0.'+secs+');';
+  
+ hour25 = hour25 + 3;
+  
+if (mins < 37) {
+  document.getElementById('face').style='margin:2px;padding:3px;border:6px dashed rgb(0,180,0);';
+  
+ hour25 = hour25 - 6;
+}
+  else if (mins > 36) {
+  document.getElementById('face').style='margin:2px;padding:3px;border:6px solid rgb(0,128,0);';
+
+ hour25 = hour25 + 7;
+  }
+ }
+ 
+ 
+ else if (mins > 45 || mins < 61) {
+  document.getElementById('tables').style='margin:2px;padding:3px;border:9px solid rgb(40,210,40);background-color:white;max-width:94%;box-shadow: 0px 0px '+mm+'px '+hh+'px rgb(17,17,34,0.'+secs+');';
+  
+  
+ hour25 = hour25 + 3;
+  
+if (mins < 52) {
+  document.getElementById('face').style='margin:2px;padding:3px;border:6px dashed rgb(20,180,20);';
+  
+ hour25 = hour25 - 6;
+}
+  else if (mins > 51) {
+  document.getElementById('face').style='margin:2px;padding:3px;border:6px dotted rgb(0,128,0);';
+
+ hour25 = hour25 + 7;
+  }
+ }
+ 
+ //this is the sunset/sunrise
+  document.getElementById('html').style='transition: 6.93s ease;background-image:linear-gradient(to bottom, rgb('+bggtop+') '+hour25+'% , rgb('+bggmid1+')  , rgb('+bggmid2+') , rgb('+bggbot+'));';
+ 
+ //change epoch3 for moment
+  epoch3 = epochy.slice(epochlen-3);
+ 
+ //keep null epoch digits from accessing next section
+ if (epochA1 == 0){
+  epochA1 = "1";
+ }
+ if (epochA2 == 0){
+  epochA2 = "1";
+ }
+ if (epochA3 == 0){
+  epochA3 = "1";
+ }
+ if (epochA4 == 0){
+  epochA4 = "1";
+ }
+ if (epochA5 == 0){
+  epochA5 = "1";
+ }
+ if (epochA6 == 0){
+  epochA6 = "1";
+ }
+ if (epochA7 == 0){
+  epochA7 = "1";
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ //add entropy to the year-entanglement
+ if(hours3 === 0){
+  yearpos1 += yearposA;
+  yearpos2 += yearposB;
+  
+  //change label
+  document.getElementById('toptext').style='background-color:rgb(50,205,50);color:black;box-shadow: 2px 1px 6px '+hh22+'px rgb(0,0,0,0.'+secs+') inset;';
+  
+  shadowmath = "2, 1, 6, "+hh22;
+  
+ //epoch bar emitor 
+ document.getElementById('words1').innerHTML = '<p style="background-image:linear-gradient(to right, rgb('+epoch4+','+epoch5+','+epoch6+', '+epoch7+'%),rgb('+epoch5+','+epoch6+','+epoch4+','+epoch8+'%));height:4.5vw;margin-top:0.85vw;width:40vw;margin-left:-3.4vw;margin-bottom:0.5%;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+') inset;" align="center"><p  style="margin-top:-3.3%;margin-left:-2.7%;align:center;text-align:center;" align="center"></br><a href="https://cointr.ee/3D_" target="_blank" style="text-decoration:none;"><b style="color:rgb('+epoch7+','+epoch6+','+epoch5+');font-size:115%;margin-top:-0.5%;">'+manage1+'</b></p></p>';
+  liveman = manage1;
+ }
+ 
+ else if(hours3 > 0 && hours3 < 3){
+  yearpos1 += yearpos1*2;
+  yearpos2 += yearpos2*3;
+  
+  //change label
+  document.getElementById('toptext').style='background-color:rgb(50,205,50);color:black;box-shadow: 1px 2px 6px '+hh22+'px rgb(0,0,0,0.'+secs+') inset;';
+  
+  shadowmath = "1, 2, 6, "+hh22;
+  
+ }
+  
+  
+  else if(hours3 > 2 && hours3 < 6){
+  yearpos1 += yearpos1*3;
+  yearpos2 += yearpos2*4;
+   
+   
+   //change label
+  document.getElementById('toptext').style='background-color:rgb(50,205,50);color:black;box-shadow: 2px -2px 6px '+hh22+'px rgb(0,0,0,0.'+secs+') inset;';
+   
+   
+  shadowmath = "2, -2, 6, "+hh22;
+  }
+ 
+  
+  else if(hours3 > 5 && hours3 < 9){
+  yearpos1 += yearpos1*5;
+  yearpos2 += yearpos2*6;
+   
+   
+   //change label
+   document.getElementById('toptext').style='background-color:rgb(50,205,50);color:black;box-shadow: -1px -'+(mins/2)+'px 3px '+mm3+'px rgb(0,0,0,0.'+secs+') inset;';
+   
+  shadowmath = "-2, -"+(mins/2)+", 3, "+mm3;
+  }
+ 
+  
+  else if(hours3 > 8 && hours3 < 12){
+  yearpos1 += yearpos1*6;
+  yearpos2 += yearpos2*7;
+   
+   //change label
+ document.getElementById('toptext').style='background-color:rgb(50,205,50);color:black;box-shadow: -'+(mins/2)+'px -3px 4px '+mm3+'px rgb(0,0,0,0.'+secs+') inset;';
+ 
+  shadowmath = "-"+(mins/2)+", -3, 4, "+mm3;
+  }
+  
+  else if(hours3 > 11 && hours3 < 15){
+  yearpos1 += yearpos1*7;
+  yearpos2 += yearpos2*8;
+   
+   
+    
+ //epoch bar emitor 
+ document.getElementById('words1').innerHTML = '<p style="background-image:linear-gradient(to right, rgb('+epoch4+','+epoch5+','+epoch6+', '+epoch7+'%),rgb('+epoch5+','+epoch6+','+epoch4+','+epoch8+'%));height:4.5vw;margin-top:0.85vw;width:40vw;margin-left:-3.4vw;margin-bottom:0.5%;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+') inset;" align="center"><p  style="margin-top:-3.3%;margin-left:-2.7%;align:center;text-align:center;" align="center"></br><a href="https://cointr.ee/3D_" target="_blank" style="text-decoration:none;"><b style="color:rgb('+epoch7+','+epoch6+','+epoch5+');font-size:115%;margin-top:-0.5%;">'+manage2+'</b></a></p></p>';
+    
+    liveman = manage2;
+    
+    if(hours3 >=13){
+   //change label
+   document.getElementById('toptext').style='background-color:rgb(50,205,50);color:black;box-shadow: 0px 0px 2px '+mm3+'px rgb(0,0,0,0.'+secs+') inset;';
+    
+    
+  shadowmath = "0, 0, 2, "+mm3;
+   
+   }
+ else {  
+   //change label
+   document.getElementById('toptext').style='background-color:rgb(50,205,50);color:black;box-shadow: -3px '+(mins/2)+'px 5px '+mm3+'px rgb(0,0,0,0.'+secs+') inset;';
+
+  shadowmath = "-3, "+(mins/2)+", 5, "+mm3;
+   }
+}
+ 
+  
+  else if(hours3 > 14 && hours3 < 18){
+  yearpos1 += yearpos1*8;
+  yearpos2 += yearpos2*9;
+  
+   
+   //change label
+   document.getElementById('toptext').style='background-color:rgb(50,205,50);color:black;box-shadow: -'+(mins/2)+'px 5px 6px '+mm3+'px rgb(0,0,0,0.'+secs+') inset;';
+ 
+  shadowmath = "-"+(mins/2)+", 5, 6, "+mm3;
+  }
+  
+  
+  else if(hours3 > 17 && hours3 < 21){
+  yearpos1 += yearpos1*9;
+  yearpos2 += yearpos2*10;
+   
+if(hours3 > 20){
+    //change label
+  document.getElementById('toptext').style='background-color:rgb(50,205,50);color:black;box-shadow: 2px -'+(mins/2)+'px 6px '+hh22+'px rgb(0,0,0,0.'+secs+') inset;';
+    
+  shadowmath = "2, -"+(mins/2)+", 6, "+hh22;
+
+   }
+   else {
+   //change label
+   document.getElementById('toptext').style='background-color:rgb(50,205,50);color:black;box-shadow: -6px -2px 6px '+mm3+'px rgb(0,0,0,0.'+secs+') inset;';
+    
+  shadowmath = "-6, -2, 6, "+mm3;
+
+   }
+  }
+  
+  
+  else if(hours3 > 20 && hours3 < 24){
+  yearpos1 += yearpos1*10;
+  yearpos2 += yearpos2*11;
+   
+
+   //change label
+  document.getElementById('toptext').style='background-color:rgb(50,205,50);color:black;box-shadow: -2px -1px 6px '+hh22+'px rgb(0,0,0,0.'+secs+') inset;';
+   
+  shadowmath = "-2, -1, 6, "+hh22;
+  }
+ 
+ 
+             
+//adjust the hours for qr output (define by am/pm::noon/midnight)
+if (hours == "12"){hours="Noon";}
+else if (hours == "13"){hours="01";}
+else if (hours == "14"){hours="02";}
+else if (hours == "15"){hours="03";}
+else if (hours == "16"){hours="04";}
+else if (hours == "17"){hours="05";}
+else if (hours == "18"){hours="06";}
+else if (hours == "19"){hours="07";}
+else if (hours == "20"){hours="08";}
+else if (hours == "21"){hours="09";}
+else if (hours == "22"){hours="10";}
+else if (hours == "23"){hours="11";}
+else if (hours == "0"){hours="Midnight";}
+                        
+//adjust the day for output
+if (daters2 === "1"){daters2="01";} 
+ else if (daters2 === "2"){daters2="02";} 
+ else if (daters2 === "3"){daters2="03";} 
+ else if (daters2 === "4"){daters2="04";}
+ else if (daters2 === "5"){daters2="05";}
+ else if (daters2 === "6"){daters2="06";} 
+ else if (daters2 === "7"){daters2="07";} 
+ else if (daters2 === "8"){daters2="08";}
+ else if (daters2 === "9"){daters2="09";} 
+ 
+ 
+ var precolor = (umonth+daters2);
+ var otherpre = (daters2*umonth);
+ var thisisthis = umonth+""+daters2+""+precolor+""+otherpre;
+
+ //16777215 white in dec
+ 
+ var utemp = (16777215-thisisthis).toString(16).slice(-6);
+ var utemp2 = ((16777215-thisisthis)-thisisthis).toString(16).slice(-6);
+ var ogtemp = thisisthis.toString(16).slice(-6);
+ var ogtemp2 = (16777215-((16777215-thisisthis)-thisisthis)).toString(16).slice(-6);
+ var eveningtemp = ((16777215-((16777215-thisisthis)-thisisthis))/daters2).toString(16).slice(-6);
+ var preeveningtemp = ((16777215-((16777215-thisisthis)-thisisthis))/(daters2*100)).toString(16).slice(-6);
+ var rancolor1 = (thisisthis/daters2);
+ var rancolor2 = (thisisthis*daters2);
+ var rancolor3 = (thisisthis^daters2);
+ 
+ var tempA = '';
+  
+ var tempB = '';
+  
+ var tempA2 = '';
+  
+ var tempB2 = '';
+ 
+ 
+ //search times to find this
+ if(latitude === "-" && longitude === "-11" || "-10" || "-9" || "-8" || "-7" || "-6" || "-5" || "-4" || "-3" || "-2" || "-1" || "13" || "14"){
+
+//if(tz === "-11" || "-10" || "-9" || "-8" || "-7" || "-6" || "-5" || "-4" || "-3" || "-2" || "-1" || "13" || "14"){
+ tempA = utemp;
+  
+ tempB = ogtemp;
+  
+ tempA2 = hexToRGB(utemp);
+  
+ tempB2 = hexToRGB(ogtemp);
+ 
+  if(latitude === "-" && longitude === "13" || "14"){
+   hours4 = (hours4-3);
+   //jean has no change
+   jan = jean + 5;
+ }
+  if(latitude === "-" && longitude === "-11" || "-10" || "-9"){
+   hours4 = (hours4-2);
+   jean = jan - 5;
+   jan = jean + 4;
+ }  
+  if(latitude === "-" && longitude === "-7" || "-6" || "-8"){
+   hours4 = (hours4-1);
+   jean = jan - 10;
+   jan = jean + 3;
+ }
+  if(latitude === "-" && longitude === "-5" || "-4" || "-3"){
+   hours4 = (hours4);
+   jean = jan - 15;
+   jan = jean + 2;
+ }
+  if(latitude === "-" && longitude === "-2" || "-1"){
+  hours4 = (hours4+1);
+   jean = jan - 20;
+   jan = jean + 1;
+  }
+  
+ }
+ else if(latitude === "-" && longitude === "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8" || "9" || "10" || "11" || "12"){
+ tempA = ogtemp;
+  
+ tempB = utemp;
+  
+ tempA2 = hexToRGB(ogtemp);
+  
+ tempB2 = hexToRGB(utemp);
+  
+  if(latitude !== "-" && longitude === "1" || "2" ){
+   hours4 = (hours4+3);
+   jean = jan - 30;
+   jan = jean - 1;
+  } 
+  if(latitude !== "-" && longitude === "3" || "4" || "5"){
+   hours4 = (hours4+4);
+   jean = jan - 35;
+   jan = jean - 2;
+  } 
+  if(latitude !== "-" && longitude === "6" || "7" || "8"){
+   hours4 = (hours4+5);
+   jean = jan - 40;
+   jan = jean - 3;
+  } 
+  if(latitude !== "-" && longitude === "9" || "10"){
+   hours4 = (hours4-5);
+   jean = jan - 45;
+   jan = jean - 4;
+  } 
+  if(latitude !== "-" && longitude === "11" || "12"){
+   hours4 = (hours4-4); //might need to change hours to -3 check in testing
+   jean = jan - 50;
+   jan = jean - 5;
+  }
+  
+ }
+ else {
+ tempA = ogtemp;
+  
+ tempB = ogtemp2;
+  
+ tempA2 = hexToRGB(utemp);
+  
+ tempB2 = hexToRGB(utemp2);
+  if(latitude !== "-" && longitude === "0"){
+   hours4 = (hours4+2);
+   jean = jan - 25;
+   //jan has no change
+  }
+ }
+ 
+ 
+ var datepos1 = ((daters2*1.66)+daters1).toFixed(2);
+ 
+ if(datepos1 === "NaN"){
+  datepos1 = ((daters2*1.66)+daters4).toFixed(2);
+ 
+              
+ if(((daters2*1.66)+daters4).toFixed(2) === "NaN"){
+  datepos1 = (daters2*1.66).toFixed(2);
+ 
+   
+ if((daters2*1.66).toFixed(2) === "NaN"){
+  datepos1 = daters2*2;
+ 
+  }
+  }
+   }
+ 
+ //create and define month based actions
+      if (daters1 === 1){daters1=months[1];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, #'+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:-10.5vw;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>';monthtemp = tempA+' '+daters2+'%, '+tempB;monthdays=31; hours4 = (hours4-4); notmonth = 8;} //jean += 15; jeans = 8; removed
+ else if (daters1 === 2){daters1=months[2];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, #'+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:-10.5vw;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>'; monthtemp = tempA+' '+daters2+'%, '+tempB;monthdays=28.25; hours4 = (hours4+4); notmonth = 9;}  //jean = 5+uday; jeans = 8; removed
+ else if (daters1 === 3){daters1=months[3];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, #'+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:-10.5vw;;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>';monthtemp = tempA+' '+daters2+'%, '+tempB;monthdays=31; hours4 = (hours4+3); notmonth = 10;} //jean = 50+uday; jeans = 7; removed
+ else if (daters1 === 4){daters1=months[4];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, #'+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:-10.5vw;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>';monthtemp = tempA+' '+daters2+'%, '+tempB;monthdays=30; hours4 = (hours4+2); notmonth = 11;} //jean = 40+uday; jeans = 7; removed
+ else if (daters1 === 5){daters1=months[5];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, #'+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:-10.5vw;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>';monthtemp = tempA+' '+daters2+'%, '+tempB;monthdays=31; hours4 = (hours4+1); notmonth = 12;} //jean = 33+uday; jeans = 7; removed
+ else if (daters1 === 6){daters1=months[6];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, '+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:-10.5vw;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>';monthtemp = tempA+' '+daters2+'%, '+tempB;monthdays=30; hours4 = hours4; notmonth = 13;} //jean = 17+uday; jeans = 7; removed
+ else if (daters1 === 7){daters1=months[7];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, #'+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:-10.5vw;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>';monthtemp = tempA+' '+daters2+'%, '+tempB;monthdays=31; hours4 = hours4; notmonth = 14;} //jean = 05+uday; jeans = 7; removed
+ else if (daters1 === 8){daters1=months[8];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, #'+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:-10.5vw;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>'; monthtemp = tempA+' '+daters2+'%, '+tempB;monthdays=31; hours4 = hours4; notmonth = 15;} //jean = 40+uday; jeans = 6; removed
+ else if (daters1 === 9){daters1=months[9];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, #'+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:0.5vw;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>';monthtemp = tempA+' '+daters2+'%, '+tempB;monthdays=30; hours4 = hours4; notmonth = 16;} //jean = 40+uday; jeans = 6; removed
+ else if (daters1 === 10){daters1=months[10];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, #'+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:-10.5vw;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>';monthtemp = tempA+' '+daters2+'%, '+tempB;monthdays=31;  hours4 = (hours4-1); notmonth = 17;} //jean = 33+uday; jeans = 6; removed
+ else if (daters1 === 11){daters1=months[11];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, #'+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:-10.5vw;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>';monthtemp = tempA+' '+daters2+'%, '+tempB;monthdays=30; hours4 = (hours4-2); notmonth = 18;} //jean = 28+uday; jeans = 6; removed
+ else if (daters1 === 12){daters1=months[12];document.getElementById('words2').innerHTML='<p style="background-image:radial-gradient(circle, #'+tempA+' '+datepos1+'%, #'+tempB+');border: 10px solid rgb('+tempB2+', '+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-0.35vw;margin-right:13.5vw;margin-left:-10.5vw;margin-bottom:3vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></br></p>';monthtemp = tempA+' '+daters2+'%, '+tempB;  hours4 = (hours4-3); notmonth = 7;} //jean = 17+uday; jeans = 6; removed
+ 
+ //unusal fix
+ jeans = Number(jeans) + 2; //this keeps going from -1 to +2
+ 
+ while(jeans > 11) {
+  jeans = jeans-11;
+  jean = jean+5;
+  
+  while(jean > 59){
+   jean = jean-59;
+   jeans = jeans+1;
+  }
+   }
+ 
+ 
+ while(jans > 23 || jans < 1 && jans > 0){
+  jans = jans-23;
+  jan = jan+5;
+ 
+  while(jan > 59){
+   jan = jan-59;
+   jans = jans+1;
+  }
+   }
+ 
+ 
+ document.getElementById('jancheck').innerHTML = jan;
+ var jancheck = document.getElementById('jancheck').innerHTML.search("-");
+ if(jancheck !== "-1"){
+  jan = -(Number(jan));
+ }
+ 
+ document.getElementById('jeancheck').innerHTML = jean;
+ var jeancheck = document.getElementById('jeancheck').innerHTML.search("-");
+ if(jeancheck !== "-1"){
+  jean = -(Number(jean));
+ }
+ 
+  
+ 
+ if(document.getElementById('nottime').checked === true){
+  document.getElementById('label').innerHTML="Uncheck to Remove &nbsp; &nbsp;<small>"+notyear+"/"+notmonth+"/"+oppisiteDate+"</small>&nbsp; "+hhh+":"+mmm+"::"+epochA1+""+epochA4+"&nbsp;";
+ }
+ if(document.getElementById('nottime').checked !== true){
+  document.getElementById('label').innerHTML="Not Date & Time";
+  document.getElementById('nottime').checked=false;
+ }
+ 
+ var ftemp = ((9/5 * (datepos1/(uday)*8)) + 32).toFixed(2);
+ 
+ if(document.getElementById('tempnum').checked === true){
+ 
+  document.getElementById('label2').innerHTML=" "+(datepos1/(uday)*8).toFixed(2)+"°C | "+ftemp+"°F &nbsp; &nbsp;<small>WARNING: Algorithmic Data</small> &nbsp; &nbsp;";
+ }
+ if(document.getElementById('tempnum').checked !== true){
+  
+  document.getElementById('label2').innerHTML="Global Avg. Temp";
+  document.getElementById('tempnum').checked=false;
+ }
+ 
+ if(document.getElementById('labeler').checked === true){
+document.getElementById('labels').style="display:block;";
+document.getElementById('labels1').style="display:block;";
+document.getElementById('labels22').style="display:block;";
+document.getElementById('labels3').style="display:block;";
+document.getElementById('labels4').style="display:block;";
+document.getElementById('labels5').style="display:block;";
+document.getElementById('labels6').style="display:block;";
+document.getElementById('labels7').style="display:block;margin-top:-1vw;";
+document.getElementById('labels8').style="display:block;";
+document.getElementById('labels10').style="display:block;";
+document.getElementById('labels11').style="display:block;";
+document.getElementById('labels12').style="display:block;";
+document.getElementById('labels13').style="display:block;margin-bottom:2vw;margin-top:-2vw;";
+  
+document.getElementById('label3').innerHTML="Uncheck to Remove";
+  
+ }
+ 
+ if(document.getElementById('labeler').checked !== true){
+   document.getElementById('labels').style="display:none;"; 
+  document.getElementById('labels1').style="display:none;"; 
+  document.getElementById('labels22').style="display:none;"; 
+  document.getElementById('labels3').style="display:none;"; 
+  document.getElementById('labels4').style="display:none;"; 
+  document.getElementById('labels5').style="display:none;"; 
+  document.getElementById('labels6').style="display:none;"; 
+  document.getElementById('labels7').style="display:none;"; 
+  document.getElementById('labels8').style="display:none;"; 
+  document.getElementById('labels10').style="display:none;"; 
+  document.getElementById('labels11').style="display:none;"; 
+  document.getElementById('labels12').style="display:none;"; 
+  document.getElementById('labels13').style="display:none;";
+document.getElementById('label3').innerHTML="View Labels";
+  
+ }
+ 
+ 
+ if(document.getElementById('offlinemode').checked === true){
+ 
+  document.getElementById('QRkiller').style="visibility:hidden;";
+  document.getElementById('timepuller').style="visibility:hidden;";
+  
+  document.getElementById('slot4').style="margin-left:-25vw;margin-right:11.5vw;margin-top:12.5vw;margin-bottom:-12.5vw;";
+  
+  document.getElementById('slot5').style="margin-left:25vw;margin-right:1.75vw;margin-top:7vw;margin-bottom:-5.5vw;";
+  
+  document.getElementById('datetime').style="visibility:hidden;margin-top:-12.5vw;margin-bottom:-12.5vw;";
+ 
+  document.getElementById('yr').style="visibility:hidden;";
+  document.getElementById('label4').innerHTML="Revive the QRs";
+ }
+ if(document.getElementById('offlinemode').checked !== true){
+  
+ 
+  document.getElementById('slot4').style="margin-left:-25vw;margin-right:11.5vw;margin-top:-2.5vw;margin-bottom:-2.5vw;";
+  
+  document.getElementById('slot5').style="margin-left:25vw;margin-right:1.75vw;margin-top:-2.5vw;margin-bottom:0.5vw;";
+  
+  document.getElementById('QRkiller').style="visibility:visible;";
+  document.getElementById('timepuller').style="visibility:visible;";
+  document.getElementById('datetime').style="visibility:visible;margin-left:1.5vw;margin-top:13vw;margin-bottom:-17vw;";
+ 
+  document.getElementById('yr').style="visibility:visible;";
+  document.getElementById('label4').innerHTML="Kill the QRs";
+  document.getElementById('offlinemode').checked=false;
+ }
+ 
+ 
+ if(document.getElementById('areyouready').checked === true){
+ 
+  document.getElementById('label5').innerHTML="Uncheck to Hide Data";
+  
+document.getElementById("livedata").style="display:block;background-color:black;color:silver;word-break:break-word;break-word:word-break;overflow:none;align:right;font-size:200%;";  
+  
+ }
+ if(document.getElementById('areyouready').checked !== true){
+  
+  document.getElementById('label5').innerHTML="Live Data";
+  document.getElementById('areyouready').checked=false;
+ document.getElementById("livedata").style="display:none;";
+ }
+ 
+ 
+ if(document.getElementById('learn1').checked === true){
+ 
+  document.getElementById('label6').innerHTML="Unckeck to Hide Info";
+  
+ 
+  document.getElementById('learnmore2').value='1';
+  
+  document.getElementById('learnmore2').style='display:block;font-size:125%;align:center;color:silver;font-size:133%;';
+  
+ }
+ if(document.getElementById('learn1').checked !== true){
+  
+  document.getElementById('label6').innerHTML="Learn More";
+  document.getElementById('livedata').checked=false;
+
+  document.getElementById('learnmore2').value='0'; 
+}
+ 
+ 
+ 
+ 
+ 
+ //epoch bar emitor 
+ document.getElementById('words1').innerHTML = '<p style="background-image:linear-gradient(to right, rgb('+epoch4+','+epoch5+','+epoch6+', '+epoch7+'%),rgb('+epoch5+','+epoch6+','+epoch4+','+epoch8+'%));height:4.5vw;margin-top:0.85vw;width:40vw;margin-left:-3.4vw;margin-bottom:0.5%;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+') inset;" align="center"><p  style="margin-top:-3.3%;margin-left:-2.7%;align:center;text-align:center;" align="center"></br><a href="https://cointr.ee/3D_" target="_blank" style="text-decoration:none;color:rgb('+epoch7+','+epoch6+','+epoch5+');font-size:115%;margin-top:-0.5%;"><b style="color:rgb('+epoch7+','+epoch6+','+epoch5+');font-size:115%;margin-top:-0.5%;">'+manage+'</b></p></p>';
+ 
+ liveman = manage;
+ 
+ //date:month bubble
+ document.getElementById('words3').innerHTML = '<p style="background-image:radial-gradient(circle, white '+daters2+'%, black);border: 10px solid rgb(0,0,0,'+daters2+'%);border-radius:50%;width:3vw;height:3vw;margin-top:-7.5vw;margin-right:1.5vw;margin-bottom:2vw;margin-left:1.75vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0.'+secs+');"></br></p>&nbsp;';
+
+ 
+if(document.getElementById('offlinemode').checked !== true){ 
+ //place the QRs
+  document.getElementById('yr').innerHTML = '<img style="width:7.5vw;margin-bottom:-0.25%;margin-right:-0.25%;" src="https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=' + daters3 + '" ></img>';
+ 
+  document.getElementById('mt').innerHTML = '<img style="width:7.5vw;margin-bottom:-0.25%;margin-top:-0.25%;margin-right:-0.25%;" src="https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=' + daters1 + '" ></img>';
+ 
+  document.getElementById('dy').innerHTML = '<img style="width:7.5vw;margin-top:-0.25%;margin-right:-0.25%;" src="https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=' + daters2 + '" ></img>';
+ 
+ document.getElementById('hour').innerHTML = '<img style="width:15vw;margin-right:-0.25%;margin-left:-0.25%;" src="https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=' + hours + '" ></img>';
+ 
+ 
+ document.getElementById('min').innerHTML = '<img style="width:15vw;margin-left:-0.25%;margin-right:-0.25%" src="https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=' + mins + '" ></img>';
+ 
+ document.getElementById('sec').innerHTML = '<img style="width:15vw;margin-left:-0.25%" src="https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=' + secs + '" ></img>';
+ 
+ //setup the right side entanlgement section
+  if(epochlen > 0){
+ document.getElementById('slot0').innerHTML  = '&nbsp;<img style="width:7.25vw;margin:-0.70vw;padding:-0.5vw;" src="https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=' + epoch0 + '" ></img>';
+ document.getElementById('slot1').innerHTML  = '<img style="width:7.25vw;margin:-0.70vw;padding:-0.5vw;margin-left:0.25vwmargin-top:-1.75vw;margin-bottom:0.75vw;" src="https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=' + epoch1 + '" ></img>';
+ document.getElementById('slot2').innerHTML  = '&nbsp;<img style="width:7.25vw;margin:-0.70vw;padding:-0.5vw;margin-left:-0.25vw;" src="https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=' + epoch2 + '" ></img>';
+ document.getElementById('slot3').innerHTML  = '<img style="width:7.25vw;margin:-0.70vw;padding:-0.5vw;margin-left:0.5vw;margin-top:-1.05vw;margin-bottom:0.75vw;" src="https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=' + epoch3 + '" ></img>';
+  }
+
+}
+ 
+ 
+ 
+ 
+ //entangle by month in year (arror positions)
+ if(d.getMonth() === 0){
+  if(yearposA > 360){ yearpos1 += 45;}
+  if(yearposB > 360){ yearpos2 += 0;}
+  
+  yearpos1 = yearposA;
+  yearpos2 = yearposB;
+  
+  if(yearposA > 360){ yearpos1 += 45;}
+  if(yearposB > 360){ yearpos2 += 0;}
+ }
+ 
+ else if(d.getMonth() === 1 || d.getMonth() === 2){
+  if(yearposA > 360){ yearpos1 += 45;}
+  if(yearposB > 360){ yearpos2 += 0;}
+  
+  yearpos1 = yearposA+30;
+  yearpos2 = yearposB+15;
+  
+  if(yearposA > 360){ yearpos1 += 75;}
+  if(yearposB > 360){ yearpos2 += 15;}
+ }
+  
+  
+  else if(d.getMonth() === 3 || d.getMonth() === 4){
+  if(yearposA > 360){ yearpos1 += 45;}
+  if(yearposB > 360){ yearpos2 += 0;} 
+  
+  yearpos1 = yearposA+60;
+  yearpos2 = yearposB+30;
+  
+  if(yearposA > 360){ yearpos1 += 105;}
+  if(yearposB > 360){ yearpos2 += 30;}
+  }
+ 
+  
+  else if(d.getMonth() === 5 || d.getMonth() === 6){
+  if(yearposA > 360){ yearpos1 += 45;}
+  if(yearposB > 360){ yearpos2 += 0;}
+   
+  yearpos1 = yearposA+90;
+  yearpos2 = yearposB+45;
+  
+  if(yearposA > 360){ yearpos1 += 135;}
+  if(yearposB > 360){ yearpos2 += 45;}
+  }
+ 
+  
+  else if(d.getMonth() === 7 || d.getMonth() === 8){
+  if(yearposA > 360){ yearpos1 += 45;}
+  if(yearposB > 360){ yearpos2 += 0;}
+  
+  yearpos1 = yearposA+120;
+  yearpos2 = yearposB+60;
+  
+  if(yearposA > 360){ yearpos1 += 165;}
+  if(yearposB > 360){ yearpos2 += 60;}
+  }
+ 
+  
+  else if(d.getMonth() === 9 || d.getMonth() === 10){
+  if(yearposA > 360){ yearpos1 += 45;}
+  if(yearposB > 360){ yearpos2 += 0;}
+   
+  yearpos1 = yearposA+150;
+  yearpos2 = yearposB+75;
+  
+  if(yearposA > 360){ yearpos1 += 195;}
+  if(yearposB > 360){ yearpos2 += 75;}
+  }
+ 
+  
+  else if(d.getMonth() === 11 || d.getMonth() === 12){
+  if(yearposA > 360){ yearpos1 += 45;}
+  if(yearposB > 360){ yearpos2 += 0;}
+   
+  yearpos1 = yearposA+180;
+  yearpos2 = yearposB+90;
+  
+  if(yearposA > 360){ yearpos1 += 225;}
+  if(yearposB > 360){ yearpos2 += 90;}
+  }
+  
+//add seconds to ouput entropy for "reving sections"
+  yearpos1 = yearpos1+secs;
+  yearpos2 = yearpos2+(secs-61); 
+
+ //define seconds manipulation
+ var secs2 = secs-61;
+ var secs3 = secs;
+ 
+ //prep the grandients
+ grad1 = (d.getYear()/d.getMonth())+", "+(d.getYear()/d.getFullYear())+", "+(d.getFullYear()/d.getMonth());
+ grad2 = (d.getFullYear()/d.getMonth())+", "+(d.getYear()/d.getFullYear())+", "+(d.getYear()/d.getMonth());
+ 
+ //check length quatum bit background color codes
+  if(yearumlen1 === 0 || yearumlen2 === 0){
+  yearums += +epoch3+epochA1+epochA4+epochA3+epochA2;
+ }
+ else if(yearumlen1 === 1 || yearumlen2 === 1){
+  yearums += +epoch3+epochA4+epochA1+epochA2+epochA3;
+ }
+ else if(yearumlen1 === 2 || yearumlen2 === 2){
+  yearums += +epoch3+epochA2+epochA3+epochA4+epochA1;
+ }
+ else if(yearumlen1 === 3 || yearumlen2 === 3){
+  yearums += +epoch3+epochA4+epochA1+epochA3+epochA2;
+ }
+ else if(yearumlen1 === 4 || yearumlen2 === 4){
+  yearums += +epoch3+epochA4+epochA1+epochA2+epochA3;
+ }
+ else if(yearumlen1 === 5 || yearumlen2 === 5){
+  yearums += +epoch3+epochA2+epochA3+epochA4+epochA1;
+ }
+ else {
+  yearums = yearums1+yearums2+yearums3;
+ }
+ 
+ 
+ var screeners = screen.width;
+ 
+ if(screeners < 500){
+  
+  //create the left quantum bit (arrorw)
+document.getElementById('slot4').innerHTML =  "<div style='width: 4.8vw;height: 4.8vw;border: 5.8px solid rgb("+grad1+"); border-radius:50%; margin-top:-9.5vw;padding-right:0.25vw;padding-left:-0.5vw;margin-right:1.05vw;margin-left:-0.25vw;margin-bottom:-0.20vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0."+secs+");background-image:linear-gradient(to bottom, #"+yearums.slice(yearums.length-6,yearums.length)+" "+epochA4+epochA3+"%, #"+yearums4.slice(yearums4.length-6,yearums4.length)+" );'><div id='leftarr' style='width: 0;height: 0;border-left: 10px solid transparent;border-right: 10px solid transparent;border-bottom: 20px dotted rgb("+grad1+");vertical-align:center;margin-right:-0.65vw;margin-left:-0.45vw;margin-bottom:-0.75vw;margin-top:-0.25vw;transform:rotate("+yearpos1+"deg);'>&nbsp;</div>&nbsp;</div>" ;
+ 
+ 
+ //create the right quantum bit (arrorw)
+document.getElementById('slot5').innerHTML =  "<div style='width: 5vw;height: 5vw;padding-left:0.15vw;padding-right:0.40vw;border:5.8px solid rgb("+grad2+"); border-radius:50%; margin-top:-6.5vw;margin-right:0.5vw;margin-left:1.75vw;margin-bottom:0.75vw;background-image:linear-gradient(to top, #"+yearums4.slice(yearums4.length-6,yearums4.length)+" "+epochA4+epochA3+"%, #"+yearums.slice(yearums.length-6,yearums.length)+");box-shadow: 0px 0px 6px 3px rgb(0,0,0,0."+secs+");'><div id='rightarr' style='width: 0;height: 0;border-left: 10.25px solid transparent;border-right: 10.25px solid transparent;vertical-align:center;border-bottom: 20px dotted rgb("+grad2+");margin-right:-0.75vw;margin-left:-0.25vw;margin-bottom:-0.25vw;transform:rotate("+yearpos2+"deg);'>&nbsp;</div>&nbsp;</div>" ;  
+ 
+    
+    }
+        else{
+            
+  //create the left quantum bit (arrorw)
+document.getElementById('slot4').innerHTML =  "<div style='width: 4.8vw;height: 4.8vw;border: 5.8px solid rgb("+grad1+"); border-radius:50%; margin-top:-6.5vw;padding-right:0.25vw;padding-left:-0.5vw;margin-right:1.05vw;margin-left:-0.25vw;margin-bottom:-0.20vw;box-shadow: 0px 0px 6px 3px rgb(0,0,0,0."+secs+");background-image:linear-gradient(to bottom, #"+yearums.slice(yearums.length-6,yearums.length)+" "+epochA4+epochA3+"%, #"+yearums4.slice(yearums4.length-6,yearums4.length)+" );'><div id='leftarr' style='width: 0;height: 0;border-left: 40px solid transparent;border-right: 40px solid transparent;border-bottom: 80px dotted rgb("+grad1+");vertical-align:center;margin-right:-0.65vw;margin-left:-0.45vw;margin-bottom:-0.75vw;margin-top:-0.25vw;transform:rotate("+yearpos1+"deg);'>&nbsp;</div>&nbsp;</div>" ;
+ 
+ 
+ //create the right quantum bit (arrorw)
+document.getElementById('slot5').innerHTML =  "<div style='width: 5vw;height: 5vw;padding-left:0.15vw;padding-right:0.40vw;border:5.8px solid rgb("+grad2+"); border-radius:50%; margin-top:-5.5vw;margin-right:0.5vw;margin-left:1.75vw;margin-bottom:0.75vw;background-image:linear-gradient(to top, #"+yearums4.slice(yearums4.length-6,yearums4.length)+" "+epochA4+epochA3+"%, #"+yearums.slice(yearums.length-6,yearums.length)+");box-shadow: 0px 0px 6px 3px rgb(0,0,0,0."+secs+");'><div id='rightarr' style='width: 0;height: 0;border-left: 41px solid transparent;border-right: 41px solid transparent;vertical-align:center;border-bottom: 80px dotted rgb("+grad2+");margin-right:-0.75vw;margin-left:-0.25vw;margin-bottom:-0.25vw;transform:rotate("+yearpos2+"deg);'>&nbsp;</div>&nbsp;</div>" ;  
+ 
+  }
+ 
+ data1out = document.getElementById('learnmore2');
+ 
+if(data1out.value === '1'){
+ data1out.innerHTML = "<div align='center' style='background-color:black;'></br><h1><q><i><b>What's a QR Clock?</b></i></q></h1><p>&nbsp; &nbsp; &nbsp;A QR Clock is a digital indirect clock that utilizes QRs to display plain text data. An Indrect Clock is a clock based on a form of time but does not display the time directly. Clocks like <i>modular clocks, blockchain clocks, un-numbered sundials, [shadow] flute spanners, color clocks & faceless clocks</i> are examples of indrect clocks.<hr style='border-color:limegreen;'></p></br><h1><q><i><b>What's a QR Clock for?</b></i></q></h1><p>&nbsp; &nbsp; &nbsp;A QR Clock is to help show that charcters are not needed for people to be able to read a clock.  Most people adhear to a common thought, <i><b>time is finite and rigid</b></i>. Looking at time through a very broad-realtive greater-perspetive, time is a <q><i>Wibbly-Wobbly</i> <strong>[fluidic space]</strong> <i>Ball</i> <strong>[of liquid]</strong></q>.</br></br>&nbsp; Many people want time to be the fluidic controller so <i>time travel</i>, <i>time-locks</i>, <i>multi-dimensional plane existance</i> and <b>other science fiction ideas</b> to be real. Real-Life time travel is practiced often by light bounded by magnigitivty & pressure controlling outsider-time-perseption as if time is a fluidic liquid.  Time and the pespection of time are natural freedoms so wihtout going further into perosnal beliefs of <i><b>time</b></i>, Please look at this <b>QR <i>Clock</i></b> with the idea that time is just numbers continually rising based on a <b>very unspecific-specific timming model</b> called <b>Planck Time Theory</b></i>.<hr style='border-color:limegreen;'></p></br><h1><q><i><b>What's 3D's QR Clock Do?</b></i></q></h1><p>&nbsp; &nbsp; &nbsp;This clock isn't just made up of QRs and all the data shown are superpositioned between approximatly 40+ points of data that directly comes from the browser time call, your device & it's clock-speed. This creates a living clock-face where almost all the <b>colors</b>, <b>hues</b>, <b>shadows</b>, <b>opacities</b> & <i>even the <b>distance of change per color</b></i> natrually change over time.<hr style='border-color:limegreen;'></p></br><h1><q><i><b>What Forms of Time are Used?</b></i></q></h1><p>&nbsp; &nbsp; &nbsp;<b style='font-size:155%;'>Readable</b>:&nbsp;&nbsp;Numbers and Characters representing the <i>Year, Month, Day, Hour, Minute, Seconds & Millasecond.</i></br></br>&nbsp; &nbsp; &nbsp; &nbsp; <b style='font-size:155%;'>Epoch</b>:&nbsp;&nbsp;This is the number of millaseconds that's passed since the <b><i>Atomic Clock</i></b> was launched, <i><b>January 1st 1970 at Midnight GMT (Greenwich Mean Time)</b>.</i> </br></br>&nbsp; &nbsp; &nbsp; &nbsp; <b style='font-size:155%;'>Relative Positions</b>:&nbsp;&nbsp;This is physical relative positions of celetisal bodies and other similar nature signals like <b>shadows</b>. </br></br>&nbsp; &nbsp; &nbsp; &nbsp; <b style='font-size:155%;'>Time-Zone</b>:&nbsp;&nbsp;This is the positive/negative number next to <b>GMT <i>(Greenwich Mean Time)</b></i>. <hr style='border-color:limegreen;'></p></br><h1><q><i><b>What Data is Shown?</b></i></q></h1><p>Tons, check-on the <q><i>Live Data</i></q> in the clock-face to view the data used for this HashDApp or click on <q><i>Labels</i></q> to see what data is displayed.</br></br></p><p align='center'><a href='https://tinyurl.com/qrclockpaper2' target='_blank' align='center'><i>Read this Clock's Developement Paper</i></p></a></div>";
+ 
+ 
+}
+ else {
+  data1out.innerHTML = "";
+  
+ }
+ 
+ if ( isNaN(upos) ){
+    upos = "~"+Math.random(secs, mins);  
+ }
+ else {
+  upos = upos;
+ }
+  
+ 
+  document.getElementById('livedata').innerHTML = "<b font-size:115%;color:silver;><table align='center' style='word-break:break-word;break-word:word-break;overflow:none;color:silver;font-size:115%;'><tr><h1 align='center'>Your Time: "+d+" </h1></tr><tr><td style='text-align:right;'>Your Supoerposition:&nbsp;&nbsp;</td><td> "+upos+"</td></tr><td><hr></td><td><hr><tr><td style='text-align:right;'>Year:&nbsp;&nbsp;</td><td> "+daters3+"</td></tr><td><hr></td><td><hr></td><tr><td style='text-align:right;'>Epoch Year:&nbsp;&nbsp;</td><td> "+daters4+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Epoch Length:&nbsp;&nbsp;</td><td> "+epochlen+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Month:&nbsp;&nbsp;</td><td> "+daters1+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Day:&nbsp;&nbsp;</td><td> "+daters2+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td align='right'>Sunrise/Sunset:&nbsp;&nbsp;</td><td> "+jeans+":"+jean+" [::] "+jans+":"+jan+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Sun:Moon Superpositions:&nbsp;&nbsp;</td><td> "+hour25/(jeans/jean)+"::"+hour25/(jans/jans)+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Month:Year Superpositioning:&nbsp;&nbsp;</td><td> "+(Math.round(hour25)/(jeans/jean))/yearper+"::"+(Math.round(hour25)/(jeans/jean))/yearper2+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Year Natrual Superpositioning:&nbsp;&nbsp;</td><td> "+yearper+"::"+yearper2+"</br>"+yearper2/yearper+"::"+yearper/yearper2+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Year:You Superpositioning:&nbsp;&nbsp;</td><td> Year Position (A):&nbsp; "+yearpos1+"</br> Your Position (B):&nbsp; "+yearpos2+"</br>Superpostition:&nbsp; "+yearpos2/yearpos1+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Year:Epoch Year Superpositioning:&nbsp;&nbsp;</td><td> "+daters3/daters4+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Epoch/<i>Now</i> Superposition:&nbsp;&nbsp;</td><td> "+epochA4/epochA1+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Various <i>Yearums</i>:&nbsp;&nbsp;</td><td> "+yearums1+", "+yearums2+", "+yearums3+", "+yearums4+", "+yearums5+", "+yearums6+", "+yearums7+", "+yearums8+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Yearum Lengths:&nbsp;&nbsp;</td><td> "+yearumlen1+" & "+yearumlen2+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Various Epoch Time Slices:&nbsp;&nbsp;</td><td> "+epoch0+", "+epoch1+", "+epoch2+", "+epoch3+", "+epoch4+", "+epoch5+", "+epoch6+", "+epoch7+", "+epoch8+",  "+epoch10+", "+epochA5+epochA6+epochA4+", "+epochA6+epochA4+epochA5+", "+epochA4+epochA5+epochA6+", "+epochA4+epochA1+", "+epochA1+epochA4+", "+epochA1+epochA3+", "+epochA4+epochA6+", "+epochA2+epochA5+", "+epochA6+epochA7+", "+epochA7+epochA5+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Epoch Time:&nbsp;&nbsp;</td><td> "+stamps+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Hour:&nbsp;&nbsp;</td><td> "+hours+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>1/4th Hour:&nbsp;&nbsp;</td><td> "+newmm+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>1/8th Hour:&nbsp;&nbsp;</td><td> "+newmm*2+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Mintues:&nbsp;&nbsp;</td><td> "+mins+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Seconds:&nbsp;&nbsp;</td><td> "+secs+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Millaseconds:&nbsp;&nbsp;</td><td> "+milli+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Reversed Seconds:&nbsp;&nbsp;</td><td> "+(60-secs)+" & "+(secs-60)+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Reversed Minutes:&nbsp;&nbsp;</td><td> "+(60-mins)+" & "+(mins-60)+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Reversed 1/4th & 1/6th Hour:&nbsp;&nbsp;</td><td> "+mm+" & "+mh+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Reversed Hours:&nbsp;&nbsp;</td><td> "+hh+" & "+(hours3-24)+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Not-Today Date:&nbsp;&nbsp;</td><td> "+oppisiteDate+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Days in this Month:&nbsp;&nbsp;</td><td> "+monthdays+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>2cd Grade Readable Time:&nbsp;&nbsp;</td><td> "+bord+":"+minn+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>2cd Grade Reversed Time (aka <i>Not Time</i>):&nbsp;&nbsp;</td><td> "+hhh+":"+mmm+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><tr><td style='text-align:right;'>3rd Rite Time Percentage:&nbsp;&nbsp;</td><td> "+hh22+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Various Galactic Hours:&nbsp;&nbsp;</td><td> "+note+", "+oten+", "+rouh+", "+hour25+", </td></tr><tr><td><hr></td><td><hr></td></tr><td style='text-align:right;'>AM/PM:&nbsp;&nbsp;</td><td> "+ampmq+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Base64 Hashing of Time Data:&nbsp;&nbsp;</td><td> "+liveman+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Day Progression:&nbsp;&nbsp;</td><td> "+hour2+"%</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Hour Progression:&nbsp;&nbsp;</td><td> "+min2+"%</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Minute Progression:&nbsp;&nbsp;</td><td> "+sec2+"%</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Approximate Shadow Realitive Positioning:&nbsp;&nbsp;</td><td> "+shadowmath+"%</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Quantum Gradient:&nbsp;&nbsp;</td><td> "+grad1+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Approximate Global Average Temprature:&nbsp;&nbsp;</td><td> "+monthtemp+"</td></tr><tr><td><hr></td><td><hr></td></tr><tr><td style='text-align:right;'>Possible Time-Based Weather Colors:&nbsp;&nbsp;</td><td><p style='width:auto;height:2.5vw;color:black;font-size:40%;background-image:linear-gradient(to right, rgb("+hexToRGB(precolor)+"), rgb("+hexToRGB(otherpre)+"),rgb("+hexToRGB(thisisthis)+"), rgb("+hexToRGB(utemp)+"), rgb("+hexToRGB(utemp2)+"), rgb("+hexToRGB(ogtemp)+"), rgb("+hexToRGB(ogtemp2)+"), rgb("+hexToRGB(eveningtemp)+"), rgb("+hexToRGB(preeveningtemp)+"), rgb("+hexToRGB(rancolor1)+"), rgb("+hexToRGB(rancolor2)+"), rgb("+hexToRGB(rancolor3)+"));'>#"+precolor+", #"+otherpre+", #"+thisisthis+", #"+utemp+", #"+utemp2+", #"+ogtemp+", #"+ogtemp2+", #"+eveningtemp+", #"+preeveningtemp+", #"+rancolor1+", #"+rancolor2+", #"+rancolor3+"</p></td></tr><tr><td><hr></td><td><hr></td></tr></br></table></b>";
+ 
+ 
+ 
+ 
+ //  document.getElementById('hour').innerHTML += hours4; //used for testing outputs
+ //search "t-z" to find this
+
+//end of timed-event
+}, 1000); //perfoms every 1 second
+
+
+ function hexToRGB(h) {
+   let r = 0, g = 0, b = 0, a = 1;
+
+  if (h.length == 4) {
+    r = "0x" + h[0] + h[1];
+    g = "0x" + h[1] + h[2];
+    b = "0x" + h[2] + h[3];
+    a = "0x" + h[3] + h[3];
+  } 
+
+  if (h.length == 5) {
+    r = "0x" + h[1] + h[1];
+    g = "0x" + h[2] + h[2];
+    b = "0x" + h[3] + h[3];
+    a = "0x" + h[4] + h[4];
+  } 
+  if (h.length == 6) {
+    r = "0x" + h[0] + h[1];
+    g = "0x" + h[1] + h[2];
+    b = "0x" + h[2] + h[3];
+    a = "0x" + h[3] + h[4];
+  }
+   if (h.length == 9) {
+    r = "0x" + h[1] + h[2];
+    g = "0x" + h[3] + h[4];
+    b = "0x" + h[5] + h[6];
+    a = "0x" + h[7] + h[8];
+  }
+  a = (+(a / 255).toFixed(2))*100;
+
+  return (+r) + ", " + (+g) + ", " + (+b);
+}
+
+</script>
+
+
+ <meta name="airtime-platform-display" content="articles">
+<meta name="airtime-platform-id" content="99a790d8-8707-e4a9-996f-a5f01813c45c">
+<script src="https://bittubeapp.com/tubepay/airtime.loader.js" data-verify="meta" data-autostart="true"></script>
+ 
+   </html>
+
